@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.project.springbootneo4j.SpringBootNeo4jApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.196 s <<< FAILURE! - in com.project.springbootneo4j.SpringBootNeo4jApplicationTests
+testCreate  Time elapsed: 2.077 s  <<< ERROR!
+java.lang.IllegalArgumentException: Supplied id does not match primary index type on supplied class com.project.springbootneo4j.model.Station
+	at com.project.springbootneo4j.SpringBootNeo4jApplicationTests.testCreate(SpringBootNeo4jApplicationTests.java:19)
+
