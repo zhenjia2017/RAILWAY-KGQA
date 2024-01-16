@@ -1,0 +1,82 @@
+<!--pages/search/search.wxml-->
+<view class="top-bar">
+    <view class="box-search">
+        <input class="input-q" bindinput="getInput" placeholder="请输入问题" value="{{inputValue}}" />
+        <icon type="search" wx:if="{{isSearch}}" />
+        <icon type="clear" wx:if="{{isClear}}" bindtap="clearTap" />
+    </view>
+    <button class="btn-query" type="primary" size="mini" bindtap="searchTap">查询</button>
+</view>
+
+<!-- 
+<view class="result-script">
+  <textarea class="output-q" placeholder="问题分析结果" maxlength="1000" value="{{scriptValue}}"></textarea>
+</view>
+ -->
+
+<view>
+    <view class="tag-name">分词：</view>
+    <scroll-view class="tag-row" scroll-x="true" style="white-space: nowrap;">
+        <view wx:for="{{analysisSeg}}" style="display: inline-block;">
+            <text class="tag-seg">{{item}}</text>
+        </view>
+    </scroll-view>
+</view>
+
+<view>
+    <view class="tag-name">实体识别：</view>
+    <scroll-view class="tag-row" scroll-x="true" style="white-space: nowrap;">
+        <view wx:for="{{analysisRec}}" style="display: inline-block;">
+            <text class="tag-rec">{{item}}</text>
+        </view>
+    </scroll-view>
+</view>
+
+<view>
+    <view class="tag-name">实体链接：</view>
+    <scroll-view class="tag-row" scroll-x="true" style="white-space: nowrap;">
+        <view wx:for="{{analysisLink}}" style="display: inline-block;">
+            <text class="tag-link">{{item}}</text>
+        </view>
+    </scroll-view>
+</view>
+
+<view>
+    <view class="tag-name">问题分类：</view>
+    <view class="tag-row">
+        <text class="tag-type">{{analysisType}}</text>
+    </view>
+</view>
+
+<view class="tag-name">答案：</view>
+<view class="result-train" wx:if="{{checkUpdateList}}">
+    <view wx:if="{{currentType=='train_no'}}">
+        <block wx:for="{{infoList}}" wx:key="unique">
+            <view class="item">
+                <view class="row1">
+                    <view class="from">
+                        <view>{{item.stationFrom}}</view>
+                    </view>
+                    <image src="../../img/direction0.png" class="img"></image>
+                    <view class="num">{{item.trainNo}}</view>
+                    <image src="../../img/direction.png" class="img"></image>
+                    <view class="to">
+                        <view>{{item.stationTo}}</view>
+                    </view>
+                </view>
+
+                <view class="row2">
+                    <view>顺序:{{item.seqFrom}}</view>
+                    <view>行驶距离:{{item.distanceTravelTo - item.distanceTravelFrom}}</view>
+                    <view>顺序:{{item.seqTo}}</view>
+                </view>
+                
+            </view>
+        </block>
+    </view>
+    <view wx:if="{{currentType=='station'}}">
+        <block wx:for="{{infoList}}" wx:key="unique">
+            <view class="tag-station">{{item}}</view>
+        </block>
+    </view>
+</view>
